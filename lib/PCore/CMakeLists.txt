@@ -6,10 +6,13 @@ message(STATUS "configuring ${PROJECT_NAME}...")
 
 set(CPP_FILES
   parameter/PAbstractParameter.cpp
+#  parameter/PBoolParameter.cpp
   )
 
 set(HEADER_FILES
   parameter/PAbstractParameter.h
+  parameter/PAbstractParameter_p.h
+#  parameter/PBoolParameter.h
   )
 
 set(QML_FILES

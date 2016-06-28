@@ -5,6 +5,15 @@
 class PAbstractParameterPrivate;
 class PAbstractParameter : public QObject
 {
+    Q_OBJECT
+
+    Q_DECLARE_PRIVATE(PAbstractParameter)
+
+protected:
+  // only sublasses may access the below
+  // allow subclasses to initialize with their own concrete Private
+  PAbstractParameter(PAbstractParameterPrivate &d, QString const& id, QObject* parent = NULL);
+  QScopedPointer<PAbstractParameterPrivate> const d_ptr;
 
 public:
     enum ParameterType
@@ -16,8 +25,6 @@ public:
         P_PARAMETER_STRING
     };
     Q_ENUM(ParameterType)
-
-    Q_OBJECT
 
 public:
     PAbstractParameter(QString const& id, QObject* parent = NULL);
@@ -43,7 +50,5 @@ public:
 public slots:
     virtual void trigger() = 0;
 
-private:
-    const QScopedPointer<PAbstractParameterPrivate> d;
 };
 
