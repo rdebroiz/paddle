@@ -1,19 +1,13 @@
-message(STATUS "configuring lib...")
-
 cmake_minimum_required(VERSION 3.0)
 
 project(PWidget)
 
+message(STATUS "configuring ${PROJECT_NAME}...")
+
 set(CPP_FILES
-  #PQtVtkGraphicsView.cpp
-  #PQtVtkGraphicsItem.cpp
-  #PQtVtkInteractorAdapter.cpp
   )
 
 set(HEADER_FILES
-  #PQtVtkGraphicsView.h
-  #PQtVtkGraphicsItem.h
-  #PQtVtkInteractorAdapter.h
   )
 
 set(QML_FILES
@@ -54,13 +48,7 @@ target_include_directories(${PROJECT_NAME}
 target_link_libraries(${PROJECT_NAME}
   PUBLIC
     Qt5::Core
-    Qt5::Gui
     Qt5::Widgets
-    Qt5::OpenGL
-    vtkCommonCore
-    vtkInteractionStyle
-    vtkGUISupportQt
-    vtkGUISupportQtOpenGL
-    ${ITK_LIBRARIES}
+    PCore
   )
 

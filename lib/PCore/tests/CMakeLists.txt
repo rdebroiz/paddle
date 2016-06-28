@@ -1,15 +1,15 @@
 cmake_minimum_required(VERSION 3.0)
 
-project(PCore)
+project(PCoreTest)
 
 message(STATUS "configuring ${PROJECT_NAME}...")
 
 set(CPP_FILES
-  parameter/PAbstractParameter.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/parameter/PAbstractParameterTest.cpp
   )
 
 set(HEADER_FILES
-  parameter/PAbstractParameter.h
+  ${CMAKE_CURRENT_SOURCE_DIR}/parameter/PAbstractParameterTest.h
   )
 
 set(QML_FILES
@@ -25,9 +25,8 @@ set(PROJECT_FILES
   ${QRC_FILES}
   )
 
-add_library(${PROJECT_NAME} SHARED
-  ${PROJECT_FILES}
-  )
+add_executable(${PROJECT_NAME} ${PROJECT_FILES})
+add_test(${PROJECT_NAME} ${PROJECT_NAME})
 
 foreach(headers_path ${HEADER_FILES})
   get_filename_component(dir_path ${CMAKE_CURRENT_SOURCE_DIR}/${headers_path} DIRECTORY)
@@ -36,7 +35,6 @@ foreach(headers_path ${HEADER_FILES})
     ${${PROJECT_NAME}_INCLUDE_DIRS}
     )
 endforeach()
-
 
 if(DEFINED ${PROJECT_NAME}_INCLUDE_DIRS)
   list(REMOVE_DUPLICATES ${PROJECT_NAME}_INCLUDE_DIRS)
@@ -49,10 +47,8 @@ target_include_directories(${PROJECT_NAME}
 
 target_link_libraries(${PROJECT_NAME}
   PUBLIC
-    Qt5::Core
+    PCore
+    Qt5::Test
   )
 
 
-if(PADDLE_BUILD_TESTS)
-    add_subdirectory(tests)
-endif()

@@ -1,12 +1,13 @@
 cmake_minimum_required(VERSION 3.0)
 
-project(paddle)
+project(PADDLE)
 
 find_package(Qt5 REQUIRED COMPONENTS
   Core
   Gui
   Widgets
   Quick
+  Test
   )
 
 set(CMAKE_AUTOMOC ON)
@@ -21,5 +22,11 @@ include(${VTK_USE_FILE})
 find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
-add_subdirectory(app)
+option(${PROJECT_NAME}_BUILD_TESTS "Build tests for ${PROJECT_NAME}" ON)
+if(${PROJECT_NAME}_BUILD_TESTS)
+    enable_testing()
+    message(STATUS "Tests have been enabled.")
+endif()
+
+#add_subdirectory(app)
 add_subdirectory(lib)

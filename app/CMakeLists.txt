@@ -1,8 +1,8 @@
-message(STATUS "configuring app...")
-
 cmake_minimum_required(VERSION 3.0)
 
 project(PViewer)
+
+message(STATUS "configuring ${PROJECT_NAME}...")
 
 set(CPP_FILES
   main.cpp
@@ -31,6 +31,7 @@ add_executable(${PROJECT_NAME}
   )
 
 target_link_libraries(${PROJECT_NAME}
-  PView
-  ${ITK_LIBRARIES}
+  PCore
+  PWidget
+  PVtkView
   )
