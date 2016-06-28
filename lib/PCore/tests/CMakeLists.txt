@@ -5,11 +5,13 @@ project(PCoreTest)
 message(STATUS "configuring ${PROJECT_NAME}...")
 
 set(CPP_FILES
-  ${CMAKE_CURRENT_SOURCE_DIR}/parameter/PAbstractParameterTest.cpp
+  parameter/PAbstractParameterTest.cpp
+  parameter/PBoolParameterTest.cpp
   )
 
 set(HEADER_FILES
-  ${CMAKE_CURRENT_SOURCE_DIR}/parameter/PAbstractParameterTest.h
+  parameter/PAbstractParameterTest.h
+  parameter/PBoolParameterTest.cpp
   )
 
 set(QML_FILES

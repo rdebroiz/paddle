@@ -10,13 +10,13 @@ void PAbstractParameterTest::match_data()
 
     PAbstractParameter *param, *otherParam;
 
-    param = new PAbstractParameterMoc("foo"); otherParam =  new PAbstractParameterMoc("foo");
+    param = new PAbstractParameterMoc("foo", this); otherParam =  new PAbstractParameterMoc("foo", this);
     QTest::newRow("string ==, type ==") << param << otherParam << true;
-    param = new PAbstractParameterMoc("foo"); otherParam =  new PAbstractParameterMoc2("foo");
+    param = new PAbstractParameterMoc("foo", this); otherParam =  new PAbstractParameterMoc2("foo", this);
     QTest::newRow("string ==, type !=") << param << otherParam << false;
-    param = new PAbstractParameterMoc("foo"); otherParam =  new PAbstractParameterMoc2("bar");
+    param = new PAbstractParameterMoc("foo", this); otherParam =  new PAbstractParameterMoc2("bar", this);
     QTest::newRow("string !=, type ==") << param << otherParam << false;
-    param = new PAbstractParameterMoc("foo"); otherParam =  new PAbstractParameterMoc2("bar");
+    param = new PAbstractParameterMoc("foo", this); otherParam =  new PAbstractParameterMoc2("bar", this);
     QTest::newRow("string !=, type !=") << param << otherParam << false;
 }
 
@@ -31,7 +31,7 @@ void PAbstractParameterTest::match()
 
 void PAbstractParameterTest::descriptionChanged()
 {
-    PAbstractParameter *param = new PAbstractParameterMoc("foo");
+    PAbstractParameter *param = new PAbstractParameterMoc("foo", this);
     QSignalSpy spy(param, &PAbstractParameter::descriptionChanged);
 
     param->setDescription("description");
@@ -46,7 +46,7 @@ void PAbstractParameterTest::descriptionChanged()
 
 void PAbstractParameterTest::captionChanged()
 {
-    PAbstractParameter *param = new PAbstractParameterMoc("foo");
+    PAbstractParameter *param = new PAbstractParameterMoc("foo", this);
     QSignalSpy spy(param, &PAbstractParameter::captionChanged);
 
     param->setCaption("caption");
