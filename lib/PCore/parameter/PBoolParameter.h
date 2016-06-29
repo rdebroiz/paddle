@@ -8,8 +8,10 @@ class PBoolParameter : public PAbstractParameter
 {
     Q_OBJECT
 
+    Q_DECLARE_PRIVATE(PBoolParameter)
+
 public:
-    PBoolParameter(const QString & name, QObject *parent = NULL);
+    PBoolParameter(const QString & id, QObject *parent = NULL);
     virtual ~PBoolParameter();
 
     virtual ParameterType type() const {return ParameterType::P_PARAMETER_BOOL;}
@@ -23,6 +25,7 @@ public slots:
 signals:
     void valueChanged(bool value);
 
-private:
-    const QScopedPointer<PBoolParameterPrivate> d;
+protected:
+    // allow PBoolParameter subclasses to pass on their Private
+    PBoolParameter(PBoolParameterPrivate &d, const QString & id, QObject *parent = NULL);
 };
