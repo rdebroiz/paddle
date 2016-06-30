@@ -2,13 +2,12 @@
 
 #include <PAbstractParameter.h>
 
-
+class PBoolGroup;
+class PBoolGroupPrivate;
 class PBoolParameterPrivate;
 class PBoolParameter : public PAbstractParameter
 {
     Q_OBJECT
-
-    Q_DECLARE_PRIVATE(PBoolParameter)
 
 public:
     PBoolParameter(const QString & id, QObject *parent = NULL);
@@ -26,6 +25,12 @@ signals:
     void valueChanged(bool value);
 
 protected:
-    // allow PBoolParameter subclasses to pass on their Private
+    // Allow PBoolParameter subclasses to pass on their Private d pointer.
     PBoolParameter(PBoolParameterPrivate &d, const QString & id, QObject *parent = NULL);
+
+private:
+    Q_DECLARE_PRIVATE(PBoolParameter)
+    // Needed for exclusivity.
+    friend class PBoolGroup;
+    friend class PBoolGroupPrivate;
 };

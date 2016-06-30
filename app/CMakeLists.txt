@@ -6,11 +6,11 @@ message(STATUS "configuring ${PROJECT_NAME}...")
 
 set(CPP_FILES
   main.cpp
-  PMainWindow.cpp
+#  PMainWindow.cpp
   )
 
 set(HEADER_FILES
-  PMainWindow.h
+#  PMainWindow.h
   )
 
 set(QML_FILES
@@ -31,7 +31,8 @@ add_executable(${PROJECT_NAME}
   )
 
 target_link_libraries(${PROJECT_NAME}
+  Qt5::Core
+  Qt5::Gui
+  Qt5::Widgets
   PCore
-  PWidget
-  PVtkView
   )

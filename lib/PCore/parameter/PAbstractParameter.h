@@ -6,7 +6,6 @@ class PAbstractParameterPrivate;
 class PAbstractParameter : public QObject
 {
     Q_OBJECT
-
     Q_DECLARE_PRIVATE(PAbstractParameter)
 
 protected:

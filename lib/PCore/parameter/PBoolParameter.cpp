@@ -1,14 +1,16 @@
 #include "PBoolParameter.h"
+#include "PBoolParameter_p.h"
 
-#include "PAbstractParameter_p.h"
+#include <QPointer>
 
-class PBoolParameterPrivate: public PAbstractParameterPrivate
+#include "PBoolGroup.h"
+
+PBoolParameterPrivate::PBoolParameterPrivate(PBoolParameter *q, QString const& q_id)
+    : PAbstractParameterPrivate(q, q_id)
 {
-public:
-    PBoolParameterPrivate(PBoolParameter *q, QString const& q_id)
-        : PAbstractParameterPrivate(q, q_id) {}
-    bool value;
-};
+    value = true;
+    group = NULL;
+}
 
 PBoolParameter::PBoolParameter(QString const& id,  QObject *parent)
     : PAbstractParameter(*new PBoolParameterPrivate(this, id), id, parent)
@@ -40,8 +42,13 @@ void PBoolParameter::setValue(bool value)
 
     if(value != d->value)
     {
-        d->value = value;
-        emit valueChanged(d->value);
+        // We don't want to toggle the value if it is "true" and the parameter belong
+        // to an exclusive group
+        if(d->group.isNull() || d->group->trueParameter() != this)
+        {
+            d->value = value;
+            emit valueChanged(d->value);
+        }
     }
 }
 

@@ -3,8 +3,6 @@
 #include <QMainWindow>
 #include <QSettings>
 
-
-
 #include <itkImageFileReader.h>
 
 template <class ImageType>

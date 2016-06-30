@@ -5,8 +5,9 @@ project(PCoreTest)
 message(STATUS "configuring ${PROJECT_NAME}...")
 
 set(CPP_FILES
-  parameter/PBoolParameterTest.cpp
   parameter/PAbstractParameterTest.cpp
+  parameter/PBoolParameterTest.cpp
+  parameter/PBoolGroupTest.cpp
   )
 
 foreach(test_file ${CPP_FILES})

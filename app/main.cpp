@@ -1,15 +1,41 @@
 #include <QApplication>
 
-#include "PMainWindow.h"
-
+#include <QWidget>
+#include <QCheckBox>
+#include <QVBoxLayout>
+#include <QButtonGroup>
 
 int main(int argc, char **argv)
 {
 
     QApplication app(argc, argv);
 
-    PMainWindow *mainWindow = new PMainWindow;
-    mainWindow->show();
+    QWidget w;
+    QVBoxLayout l(&w);
+
+    QCheckBox b1;
+    QCheckBox b2;
+    QCheckBox b3;
+    QCheckBox b4;
+
+    b2.setChecked(true);
+
+    l.addWidget(&b1);
+    l.addWidget(&b2);
+    l.addWidget(&b3);
+    l.addWidget(&b4);
+
+    QButtonGroup g1;
+    QButtonGroup g2;
+
+    g1.addButton(&b1);
+    g1.addButton(&b2);
+    g1.addButton(&b3);
+
+    g2.addButton(&b1);
+    g2.addButton(&b4);
+
+    w.show();
 
     return app.exec();
 }
