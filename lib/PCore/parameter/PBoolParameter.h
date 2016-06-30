@@ -30,7 +30,7 @@ protected:
 
 private:
     Q_DECLARE_PRIVATE(PBoolParameter)
-    // Needed for exclusivity.
+    // Needed to avoid to have a parameter owned more than only one PBoolGroup.
     friend class PBoolGroup;
     friend class PBoolGroupPrivate;
 };
