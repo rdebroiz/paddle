@@ -79,8 +79,8 @@ void PBoolGroup::addParameter(PBoolParameter *param)
         // Affect the group of the param to 'this'.
         param->d_func()->group = this;
 
-        // If it is the first parameter of the group set its value to true.
-        // It's supposed to always have one parameter to true.
+        // If it is the first parameter of the group, set its value to 'true'.
+        // It's supposed to always have one and only one parameter to true.
         if(d->parameters.isEmpty())
             param->setValue(true);
 
@@ -100,7 +100,7 @@ void PBoolGroup::removeParameter(PBoolParameter *param)
     param->d_func()->group = NULL;
 
     // If we removed the true parameter we set the value of the last added one to true,
-    // so there is aways a valid true parameter
+    // so there is always a valid true parameter.
     if(param == d->trueParam && !d->parameters.isEmpty())
         d->parameters.last()->setValue(true);
     else
