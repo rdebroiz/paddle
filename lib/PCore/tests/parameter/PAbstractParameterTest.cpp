@@ -18,6 +18,8 @@ void PAbstractParameterTest::match_data()
     QTest::newRow("string !=, type ==") << param << otherParam << false;
     param = new PAbstractParameterMoc("foo", this); otherParam =  new PAbstractParameterMoc2("bar", this);
     QTest::newRow("string !=, type !=") << param << otherParam << false;
+    param = new PAbstractParameterMoc("foo", this); otherParam =  NULL;
+    QTest::newRow("other is NULL") << param << otherParam << false;
 }
 
 void PAbstractParameterTest::match()

@@ -71,5 +71,9 @@ bool PAbstractParameter::match(const PAbstractParameter *other) const
 {
     Q_D(const PAbstractParameter);
 
-    return (this->type() == other->type() && d->id == other->id());
+    // Maybe we should just check for id equallity?
+    if(other != NULL)
+        return (this->type() == other->type() && d->id == other->id());
+    else
+        return false;
 }
