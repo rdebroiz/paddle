@@ -1,9 +1,8 @@
 #include <QApplication>
 
-#include <QWidget>
-#include <QCheckBox>
-#include <QVBoxLayout>
-#include <QButtonGroup>
+#include <QtCore>
+#include <QtGui>
+#include <QtWidgets>
 
 int main(int argc, char **argv)
 {
@@ -18,12 +17,19 @@ int main(int argc, char **argv)
     QCheckBox b3;
     QCheckBox b4;
 
+    QSlider s;
+
     b2.setChecked(true);
 
     l.addWidget(&b1);
     l.addWidget(&b2);
     l.addWidget(&b3);
     l.addWidget(&b4);
+    l.addWidget(&s);
+
+    s.setRange(18, 5);
+    qDebug() << s.minimum();
+    qDebug() << s.maximum();
 
     QButtonGroup g1;
     QButtonGroup g2;

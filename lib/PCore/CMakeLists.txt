@@ -8,6 +8,7 @@ set(CPP_FILES
   parameter/PAbstractParameter.cpp
   parameter/PBoolParameter.cpp
   parameter/PBoolGroup.cpp
+  parameter/PIntParameter.cpp
   )
 
 set(HEADER_FILES
@@ -16,6 +17,7 @@ set(HEADER_FILES
   parameter/PBoolParameter.h
   parameter/PBoolParameter_p.h
   parameter/PBoolGroup.h
+  parameter/PIntParameter.h
   )
 
 set(QML_FILES

@@ -8,6 +8,7 @@ set(CPP_FILES
   parameter/PAbstractParameterTest.cpp
   parameter/PBoolParameterTest.cpp
   parameter/PBoolGroupTest.cpp
+  parameter/PIntParameterTest.cpp
   )
 
 foreach(test_file ${CPP_FILES})
