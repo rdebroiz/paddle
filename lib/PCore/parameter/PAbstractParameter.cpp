@@ -15,8 +15,9 @@ PAbstractParameter::PAbstractParameter(const QString & id, QObject *parent)
 }
 
 PAbstractParameter::PAbstractParameter(PAbstractParameterPrivate &d, const QString & id, QObject *parent)
-    : d_ptr(&d)
+    : QObject(parent), d_ptr(&d)
 {
+    Q_UNUSED(id)
 }
 
 PAbstractParameter::~PAbstractParameter()
