@@ -36,3 +36,4 @@ target_link_libraries(${PROJECT_NAME}
   Qt5::Widgets
   PCore
   )
+
