@@ -11,6 +11,7 @@ public:
     PAbstractParameterPrivate(PAbstractParameter *q, QString const& q_id);
     PAbstractParameter *q_ptr; // q-ptr points to the API class
 
+    //TODO Merge id and Qt ObjectName property?
     QString id;
     QString description;
     QString caption;

@@ -11,6 +11,7 @@ set(CPP_FILES
   parameter/PIntParameter.cpp
   parameter/PDoubleParameter.cpp
   parameter/PStringParameter.cpp
+  parameter/PParameterPool.cpp
   )
 
 set(HEADER_FILES
@@ -20,11 +21,13 @@ set(HEADER_FILES
   parameter/PIntParameter.h
   parameter/PDoubleParameter.h
   parameter/PStringParameter.h
+  parameter/PParameterPool.h
   )
 
 set(HEADER_FILES_PRIVATE
   parameter/private/PAbstractParameter_p.h
   parameter/private/PBoolParameter_p.h
+  parameter/private/PParameterPool_p.h
   )
 
 set(QML_FILES
@@ -35,6 +38,7 @@ set(QRC_FILES
 
 set(PROJECT_FILES
   ${HEADER_FILES}
+  ${HEADER_FILES_PRIVATE}
   ${CPP_FILES}
   ${QML_FILES}
   ${QRC_FILES}
