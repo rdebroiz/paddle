@@ -15,6 +15,4 @@ private slots:
     void trueParameterTest();
 
     void noParameterinMultipleGroup();
-
-    void t();
 };

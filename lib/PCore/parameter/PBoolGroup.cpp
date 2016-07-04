@@ -18,9 +18,6 @@ public:
 
     QList <PBoolParameter *> parameters;
     QPointer<PBoolParameter> trueParam;
-
-public slots:
-    void toggleParameters(bool value);
 };
 
 PBoolGroupPrivate::PBoolGroupPrivate(PBoolGroup *q):

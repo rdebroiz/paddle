@@ -13,11 +13,14 @@ set(CPP_FILES
 
 set(HEADER_FILES
   parameter/PAbstractParameter.h
-  parameter/PAbstractParameter_p.h
   parameter/PBoolParameter.h
-  parameter/PBoolParameter_p.h
   parameter/PBoolGroup.h
   parameter/PIntParameter.h
+  )
+
+set(HEADER_FILES_PRIVATE
+  parameter/private/PAbstractParameter_p.h
+  parameter/private/PBoolParameter_p.h
   )
 
 set(QML_FILES
@@ -50,9 +53,24 @@ if(DEFINED ${PROJECT_NAME}_INCLUDE_DIRS)
   list(REMOVE_DUPLICATES ${PROJECT_NAME}_INCLUDE_DIRS)
 endif()
 
+foreach(headers_path_private ${HEADER_FILES_PRIVATE})
+  get_filename_component(dir_path_private ${CMAKE_CURRENT_SOURCE_DIR}/${headers_path_private} DIRECTORY)
+  set(${PROJECT_NAME}_INCLUDE_DIRS_PRIVATE
+    ${dir_path_private}
+    ${${PROJECT_NAME}_INCLUDE_DIRS_PRIVATE}
+    )
+endforeach()
+
+
+if(DEFINED ${PROJECT_NAME}_INCLUDE_DIRS_PRIVATE)
+  list(REMOVE_DUPLICATES ${PROJECT_NAME}_INCLUDE_DIRS_PRIVATE)
+endif()
+
 target_include_directories(${PROJECT_NAME}
   PUBLIC
     ${${PROJECT_NAME}_INCLUDE_DIRS}
+  PRIVATE
+    ${${PROJECT_NAME}_INCLUDE_DIRS_PRIVATE}
   )
 
 target_link_libraries(${PROJECT_NAME}

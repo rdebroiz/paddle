@@ -173,9 +173,4 @@ void PBoolGroupTest::noParameterinMultipleGroup()
     QVERIFY(group2->parameters().contains(param));
 }
 
-void PBoolGroupTest::t()
-{
-
-}
-
 QTEST_MAIN(PBoolGroupTest)
