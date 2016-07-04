@@ -11,6 +11,7 @@ set(CPP_FILES
   parameter/PIntParameterTest.cpp
   parameter/PDoubleParameterTest.cpp
   parameter/PStringParameterTest.cpp
+  parameter/PParameterPoolTest.cpp
   )
 
 foreach(test_file ${CPP_FILES})

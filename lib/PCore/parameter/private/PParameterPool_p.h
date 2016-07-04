@@ -14,10 +14,10 @@ public:
     PParameterPoolPrivate(PParameterPool *q);
     PParameterPool *q_ptr; // q-ptr points to the API class
 
-    QMultiHash<QString const&, PStringParameter*> stringHash;
-    QMultiHash<QString const&, PBoolParameter *> boolHash;
-    QMultiHash<QString const&, PIntParameter *> intHash;
-    QMultiHash<QString const&, PDoubleParameter *> doubleHash;
+    QMultiHash<QString, PStringParameter*> stringHash;
+    QMultiHash<QString, PBoolParameter *> boolHash;
+    QMultiHash<QString, PIntParameter *> intHash;
+    QMultiHash<QString, PDoubleParameter *> doubleHash;
 
     void connect(PStringParameter *param);
     void disconnect(PStringParameter *param);
