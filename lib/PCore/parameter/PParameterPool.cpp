@@ -12,16 +12,15 @@ void PParameterPoolPrivate::connect(PStringParameter *param)
 
     QObject::connect(param, &PStringParameter::valueChanged,
                      q, &PParameterPool::_dispatchString, Qt::UniqueConnection);
-    QObject::connect(param, &PStringParameter::destroyed,
-                     q, &PParameterPool::_removeSender, Qt::UniqueConnection);
 }
 
 void PParameterPoolPrivate::disconnect(PStringParameter *param)
 {
     Q_Q(PParameterPool);
 
-    param->disconnect(q);
 
+    QObject::disconnect(param, &PStringParameter::valueChanged,
+                        q, &PParameterPool::_dispatchString);
 }
 
 void PParameterPoolPrivate::connect(PBoolParameter *param)
@@ -30,15 +29,14 @@ void PParameterPoolPrivate::connect(PBoolParameter *param)
 
     QObject::connect(param, &PBoolParameter::valueChanged,
                      q, &PParameterPool::_dispatchBool, Qt::UniqueConnection);
-    QObject::connect(param, &PStringParameter::destroyed,
-                     q, &PParameterPool::_removeSender, Qt::UniqueConnection);
 }
 
 void PParameterPoolPrivate::disconnect(PBoolParameter *param)
 {
     Q_Q(PParameterPool);
 
-    param->disconnect(q);
+    QObject::disconnect(param, &PBoolParameter::valueChanged,
+                        q, &PParameterPool::_dispatchBool);
 
 }
 
@@ -48,15 +46,14 @@ void PParameterPoolPrivate::connect(PIntParameter *param)
 
     QObject::connect(param, &PIntParameter::valueChanged,
                      q, &PParameterPool::_dispatchInt, Qt::UniqueConnection);
-    QObject::connect(param, &PStringParameter::destroyed,
-                     q, &PParameterPool::_removeSender, Qt::UniqueConnection);
 }
 
 void PParameterPoolPrivate::disconnect(PIntParameter *param)
 {
     Q_Q(PParameterPool);
 
-    param->disconnect(q);
+    QObject::disconnect(param, &PIntParameter::valueChanged,
+                        q, &PParameterPool::_dispatchInt);
 
 }
 
@@ -66,15 +63,14 @@ void PParameterPoolPrivate::connect(PDoubleParameter *param)
 
     QObject::connect(param, &PDoubleParameter::valueChanged,
                      q, &PParameterPool::_dispatchDouble, Qt::UniqueConnection);
-    QObject::connect(param, &PStringParameter::destroyed,
-                     q, &PParameterPool::_removeSender, Qt::UniqueConnection);
 }
 
 void PParameterPoolPrivate::disconnect(PDoubleParameter *param)
 {
     Q_Q(PParameterPool);
 
-    param->disconnect(q);
+    QObject::disconnect(param, &PDoubleParameter::valueChanged,
+                        q, &PParameterPool::_dispatchDouble);
 
 }
 
@@ -105,6 +101,9 @@ void PParameterPool::append(PStringParameter *parameter)
     {
         d->stringHash.insert(id, parameter);
         d->connect(parameter);
+
+        QObject::connect(parameter, &PStringParameter::destroyed,
+                         this, &PParameterPool::_removeSender, Qt::UniqueConnection);
     }
 }
 
@@ -125,6 +124,9 @@ void PParameterPool::append(PBoolParameter *parameter)
     {
         d->boolHash.insert(id, parameter);
         d->connect(parameter);
+
+        QObject::connect(parameter, &PBoolParameter::destroyed,
+                         this, &PParameterPool::_removeSender, Qt::UniqueConnection);
     }
 }
 
@@ -145,6 +147,9 @@ void PParameterPool::append(PIntParameter *parameter)
     {
         d->intHash.insert(id, parameter);
         d->connect(parameter);
+
+        QObject::connect(parameter, &PIntParameter::destroyed,
+                         this, &PParameterPool::_removeSender, Qt::UniqueConnection);
     }
 }
 
@@ -165,6 +170,9 @@ void PParameterPool::append(PDoubleParameter *parameter)
     {
         d->doubleHash.insert(id, parameter);
         d->connect(parameter);
+
+        QObject::connect(parameter, &PDoubleParameter::destroyed,
+                         this, &PParameterPool::_removeSender, Qt::UniqueConnection);
     }
 }
 
