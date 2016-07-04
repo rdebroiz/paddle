@@ -1,7 +1,7 @@
 #include "PDoubleParameter.h"
 #include "PAbstractParameter_p.h"
 
-#include "QtDebug"
+#include <QtDebug>
 
 class PDoubleParameterPrivate: public PAbstractParameterPrivate
 {

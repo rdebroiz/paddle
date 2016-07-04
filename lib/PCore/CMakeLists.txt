@@ -10,6 +10,7 @@ set(CPP_FILES
   parameter/PBoolGroup.cpp
   parameter/PIntParameter.cpp
   parameter/PDoubleParameter.cpp
+  parameter/PStringParameter.cpp
   )
 
 set(HEADER_FILES
@@ -17,7 +18,8 @@ set(HEADER_FILES
   parameter/PBoolParameter.h
   parameter/PBoolGroup.h
   parameter/PIntParameter.h
-  parameter/PDoubleParameter.cpp
+  parameter/PDoubleParameter.h
+  parameter/PStringParameter.h
   )
 
 set(HEADER_FILES_PRIVATE
