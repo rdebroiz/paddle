@@ -69,7 +69,7 @@ void PBoolGroup::addParameter(PBoolParameter *param)
 
     if(param->d_func()->group != this)
     {
-        // Check that they're not already a parameter
+        // Check that they is not already a parameter
         // with the same id in the group,
         // Otherwise things will go wrong (infinite loop),
         // if they're put in a PParameterPool.
