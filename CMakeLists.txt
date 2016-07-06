@@ -28,5 +28,5 @@ if(${PROJECT_NAME}_BUILD_TESTS)
     message(STATUS "Tests have been enabled.")
 endif()
 
-#add_subdirectory(app)
+add_subdirectory(app)
 add_subdirectory(lib)
