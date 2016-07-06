@@ -30,6 +30,11 @@ PAbstractParameterPresenter::PAbstractParameterPresenter(PAbstractParameter *par
 
 }
 
+PAbstractParameterPresenter::~PAbstractParameterPresenter()
+{
+
+}
+
 
 void PAbstractParameterPresenter::setVisible(bool visibility)
 {
