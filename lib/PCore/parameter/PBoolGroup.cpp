@@ -28,10 +28,6 @@ PBoolGroupPrivate::PBoolGroupPrivate(PBoolGroup *q):
 void PBoolGroup::_toggleParameters(bool value)
 {   
     Q_D(PBoolGroup);
-    // TODO: Not the most efficient way to do it.
-    // Another way would to notify other parameter throug signals
-    // And so avoid to walk throug all the set of parameters to give them
-    // the right value.
 
     // if !value, it just been called after triggering a parameter with 'false 'as value.
     // if sender ==  trueParameter, it been called after triggering the 'true' parameter.
@@ -69,7 +65,7 @@ void PBoolGroup::addParameter(PBoolParameter *param)
 
     if(param->d_func()->group != this)
     {
-        // Check that they is not already a parameter
+        // Check that there is not already a parameter
         // with the same id in the group,
         // Otherwise things will go wrong (infinite loop),
         // if they're put in a PParameterPool.
