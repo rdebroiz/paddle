@@ -4,6 +4,8 @@
 
 #include <PBoolParameter.h>
 #include <QCheckBox>
+#include <QPushButton>
+#include <QRadioButton>
 
 class PBoolPresenterPrivate;
 class  PBoolPresenter : public PAbstractParameterPresenter
@@ -18,8 +20,19 @@ public:
 
     virtual QWidget *buildWidget() const;
     QCheckBox *buildCheckBox() const;
+    QPushButton* buildPushButton() const;
+    QRadioButton* buildRadioButton() const;
 
 
+public slots:
+    void setCaptionVisibility(bool visibility);
+    void setIcon(QIcon const& icon);
+
+protected slots:
+    void _dispatchCaption();
+signals:
+    void captionChanged(QString caption);
+    void iconChange(QIcon icon);
 
 protected:
     PBoolPresenter(PBoolPresenterPrivate &d, PBoolParameter *parent);

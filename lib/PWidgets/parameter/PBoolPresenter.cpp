@@ -4,21 +4,49 @@
 class PBoolPresenterPrivate: public PAbstractParameterPresenterPrivate
 {
 public:
+    Q_DECLARE_PUBLIC(PBoolPresenter)
+
     PBoolParameter *parameter;
+    bool captionVisibility;
+    QIcon icon;
 
     PBoolPresenterPrivate(PBoolPresenter *q, PBoolParameter *p)
         : PAbstractParameterPresenterPrivate(q, p)
     {
         parameter = p;
+        captionVisibility = true;
     }
 
     void connectButton(QAbstractButton *button) const
     {
+        Q_Q(const PBoolPresenter);
+
+        button->setCheckable(true);
+        button->setChecked(parameter->value());
+
+        // duplicate _dispatchCaption to preserve constness
+        if(captionVisibility)
+            button->setText(parameter->caption());
+        else
+            button->setText("");
+
+        button->setIcon(icon);
+
         QObject::connect(button, &QAbstractButton::toggled,
                          parameter, &PBoolParameter::setValue);
 
         QObject::connect(parameter, &PBoolParameter::valueChanged,
                          button, &QAbstractButton::setChecked);
+
+        QObject::connect(parameter, &PBoolParameter::captionChanged,
+                         q, &PBoolPresenter::_dispatchCaption);
+
+        QObject::connect(q, &PBoolPresenter::captionChanged,
+                         button, &QAbstractButton::setText);
+
+        QObject::connect(q, &PBoolPresenter::iconChange,
+                         button, &QAbstractButton::setIcon);
+
     }
 };
 
@@ -50,17 +78,61 @@ QCheckBox *PBoolPresenter::buildCheckBox() const
     Q_D(const PBoolPresenter);
 
     QCheckBox *checkBox = new QCheckBox;
-    checkBox->setChecked(d->parameter->value());
-    d->connectButton(checkBox);
 
-    checkBox->setToolTip(d->parameter->description());
+    d->connectButton(checkBox);
     d->connectWiget(checkBox);
 
-    checkBox->setText(this->parameter()->caption());
-    connect(d->parameter, &PBoolParameter::captionChanged,
-            checkBox, &QCheckBox::setText);
-
     return checkBox;
+}
+
+QPushButton *PBoolPresenter::buildPushButton() const
+{
+    Q_D(const PBoolPresenter);
+
+    QPushButton *button = new QPushButton();
+    d->connectButton(button);
+    d->connectWiget(button);
+
+    return button;
+}
+
+QRadioButton *PBoolPresenter::buildRadioButton() const
+{
+    Q_D(const PBoolPresenter);
+
+    QRadioButton *button = new QRadioButton();
+    d->connectButton(button);
+    d->connectWiget(button);
+
+    return button;
+}
+
+void PBoolPresenter::setCaptionVisibility(bool visibility)
+{
+    Q_D(PBoolPresenter);
+
+    if(visibility != d->captionVisibility)
+    {
+       this->_dispatchCaption();
+    }
+}
+
+void PBoolPresenter::setIcon(const QIcon &icon)
+{
+    Q_D(PBoolPresenter);
+
+    d->icon = icon;
+    emit iconChange(d->icon);
+}
+
+void PBoolPresenter::_dispatchCaption()
+{
+    Q_D(const PBoolPresenter);
+
+    if(d->captionVisibility)
+        emit captionChanged(d->parameter->caption());
+    else
+        emit captionChanged("");
 }
 
 PBoolPresenter::PBoolPresenter(PBoolPresenterPrivate &d, PBoolParameter *parent)

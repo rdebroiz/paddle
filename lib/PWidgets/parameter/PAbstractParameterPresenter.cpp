@@ -14,6 +14,8 @@ void PAbstractParameterPresenterPrivate::connectWiget(QWidget *widget) const
 {
     Q_Q(const PAbstractParameterPresenter);
 
+    widget->setToolTip(parameter->description());
+
     QObject::connect(parameter, &PAbstractParameter::descriptionChanged,
                      widget, &QWidget::setToolTip);
 

@@ -96,12 +96,12 @@ int main(int argc, char **argv)
     PBoolPresenter *pres14 = new PBoolPresenter(param14);
     PBoolPresenter *pres15 = new PBoolPresenter(param15);
 
-    exclusiveLayout1->addWidget(pres10->buildCheckBox());
-    exclusiveLayout1->addWidget(pres11->buildCheckBox());
-    exclusiveLayout1->addWidget(pres12->buildCheckBox());
-    exclusiveLayout2->addWidget(pres13->buildCheckBox());
-    exclusiveLayout2->addWidget(pres14->buildCheckBox());
-    exclusiveLayout2->addWidget(pres15->buildCheckBox());
+    exclusiveLayout1->addWidget(pres10->buildRadioButton());
+    exclusiveLayout1->addWidget(pres11->buildRadioButton());
+    exclusiveLayout1->addWidget(pres12->buildRadioButton());
+    exclusiveLayout2->addWidget(pres13->buildPushButton());
+    exclusiveLayout2->addWidget(pres14->buildPushButton());
+    exclusiveLayout2->addWidget(pres15->buildPushButton());
 
     param10->setCaption("parameter 10");
     param11->setCaption("parameter 11");
