@@ -15,5 +15,5 @@ public:
     bool isEnable;
     PAbstractParameter *parameter;
 
-    void connectWiget(QWidget *widget) const;
+    void connectWidget(QWidget *widget) const;
 };

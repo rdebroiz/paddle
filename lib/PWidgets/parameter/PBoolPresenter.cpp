@@ -85,7 +85,7 @@ QCheckBox *PBoolPresenter::buildCheckBox() const
     QCheckBox *checkBox = new QCheckBox;
 
     d->connectButton(checkBox);
-    d->connectWiget(checkBox);
+    d->connectWidget(checkBox);
 
     return checkBox;
 }
@@ -96,7 +96,7 @@ QPushButton *PBoolPresenter::buildPushButton() const
 
     QPushButton *button = new QPushButton();
     d->connectButton(button);
-    d->connectWiget(button);
+    d->connectWidget(button);
 
     return button;
 }
@@ -107,7 +107,7 @@ QRadioButton *PBoolPresenter::buildRadioButton() const
 
     QRadioButton *button = new QRadioButton();
     d->connectButton(button);
-    d->connectWiget(button);
+    d->connectWidget(button);
 
     return button;
 }
@@ -119,7 +119,7 @@ void PBoolPresenter::setCaptionVisibility(bool visibility)
     if(visibility != d->captionVisibility)
     {
         d->captionVisibility = visibility;
-       this->_dispatchCaption();
+        this->_dispatchCaption();
     }
 }
 

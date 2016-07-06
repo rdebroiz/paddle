@@ -10,7 +10,7 @@ PAbstractParameterPresenterPrivate::PAbstractParameterPresenterPrivate(PAbstract
     isEnable = true;
 }
 
-void PAbstractParameterPresenterPrivate::connectWiget(QWidget *widget) const
+void PAbstractParameterPresenterPrivate::connectWidget(QWidget *widget) const
 {
     Q_Q(const PAbstractParameterPresenter);
 

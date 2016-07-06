@@ -31,6 +31,7 @@ public slots:
 
 protected slots:
     void _dispatchCaption();
+
 signals:
     void captionChanged(QString caption);
     void iconChange(QIcon icon);
