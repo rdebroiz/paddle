@@ -27,12 +27,14 @@ public:
 public slots:
     void setCaptionVisibility(bool visibility);
     void setIcon(QIcon const& icon);
+    void setIconSize(QSize const& size);
 
 protected slots:
     void _dispatchCaption();
 signals:
     void captionChanged(QString caption);
     void iconChange(QIcon icon);
+    void iconSizeChange(QSize size);
 
 protected:
     PBoolPresenter(PBoolPresenterPrivate &d, PBoolParameter *parent);

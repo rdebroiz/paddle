@@ -9,6 +9,7 @@ public:
     PBoolParameter *parameter;
     bool captionVisibility;
     QIcon icon;
+    QSize iconSize;
 
     PBoolPresenterPrivate(PBoolPresenter *q, PBoolParameter *p)
         : PAbstractParameterPresenterPrivate(q, p)
@@ -31,6 +32,7 @@ public:
             button->setText("");
 
         button->setIcon(icon);
+        button->setIconSize(iconSize);
 
         QObject::connect(button, &QAbstractButton::toggled,
                          parameter, &PBoolParameter::setValue);
@@ -46,6 +48,9 @@ public:
 
         QObject::connect(q, &PBoolPresenter::iconChange,
                          button, &QAbstractButton::setIcon);
+
+        QObject::connect(q, &PBoolPresenter::iconSizeChange,
+                         button, &QAbstractButton::setIconSize);
 
     }
 };
@@ -124,6 +129,17 @@ void PBoolPresenter::setIcon(const QIcon &icon)
 
     d->icon = icon;
     emit iconChange(d->icon);
+}
+
+void PBoolPresenter::setIconSize(const QSize &size)
+{
+    Q_D(PBoolPresenter);
+
+    if(d->iconSize != size)
+    {
+        d->iconSize = size;
+        emit iconSizeChange(d->iconSize);
+    }
 }
 
 void PBoolPresenter::_dispatchCaption()

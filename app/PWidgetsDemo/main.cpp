@@ -7,8 +7,8 @@
 #include <QGroupBox>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
-
 #include <QButtonGroup>
+#include <QUrl>
 
 
 int main(int argc, char **argv)
@@ -97,6 +97,9 @@ int main(int argc, char **argv)
     PBoolPresenter *pres15 = new PBoolPresenter(param15);
 
     pres14->setCaptionVisibility(false);
+    pres15->setCaptionVisibility(false);
+    pres15->setIcon(QIcon(":/icon/keyboardcat.jpg"));
+    pres15->setIconSize(QSize(150, 150));
 
     exclusiveLayout1->addWidget(pres10->buildRadioButton());
     exclusiveLayout1->addWidget(pres11->buildRadioButton());

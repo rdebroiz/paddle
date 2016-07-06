@@ -15,6 +15,7 @@ set(QML_FILES
   )
 
 set(QRC_FILES
+  icons.qrc
   )
 
 set(PROJECT_FILES
