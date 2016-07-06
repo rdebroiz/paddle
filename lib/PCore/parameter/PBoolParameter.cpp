@@ -45,10 +45,12 @@ void PBoolParameter::setValue(bool value)
         // We don't want to toggle the value if it is "true" and the parameter belong
         // to an exclusive group
         if(d->group.isNull() || d->group->trueParameter() != this)
-        {
             d->value = value;
-            emit valueChanged(d->value);
-        }
+
+        // Emit value change even if hasn't change.
+        // So widgets go back to a 'checked' state when the user tries to activate it
+        // when we belongs to one group and we are the 'true' parameter.
+        emit valueChanged(d->value);
     }
 }
 
