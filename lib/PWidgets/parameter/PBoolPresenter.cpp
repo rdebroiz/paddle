@@ -113,6 +113,7 @@ void PBoolPresenter::setCaptionVisibility(bool visibility)
 
     if(visibility != d->captionVisibility)
     {
+        d->captionVisibility = visibility;
        this->_dispatchCaption();
     }
 }

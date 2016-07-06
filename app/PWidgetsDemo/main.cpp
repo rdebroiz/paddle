@@ -96,6 +96,8 @@ int main(int argc, char **argv)
     PBoolPresenter *pres14 = new PBoolPresenter(param14);
     PBoolPresenter *pres15 = new PBoolPresenter(param15);
 
+    pres14->setCaptionVisibility(false);
+
     exclusiveLayout1->addWidget(pres10->buildRadioButton());
     exclusiveLayout1->addWidget(pres11->buildRadioButton());
     exclusiveLayout1->addWidget(pres12->buildRadioButton());
