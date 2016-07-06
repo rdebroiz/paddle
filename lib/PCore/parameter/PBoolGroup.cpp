@@ -69,23 +69,41 @@ void PBoolGroup::addParameter(PBoolParameter *param)
 
     if(param->d_func()->group != this)
     {
-        // If param is already in a group, remove it from it.
-        if(!param->d_func()->group.isNull())
-            param->d_func()->group->removeParameter(param);
+        // Check that they're not already a parameter
+        // with the same id in the group,
+        // Otherwise things will go wrong (infinite loop),
+        // if they're put in a PParameterPool.
+        bool differentId = true;
+        for(PBoolParameter *p : d->parameters)
+        {
+            if(p->id() == param->id())
+            {
+                differentId = false;
+                qWarning() << Q_FUNC_INFO << "Attempt to put to PBoolParameter with the same id inside a PBoolGroup.";
+                break;
+            }
+        }
 
-        // Affect the group of the param to 'this'.
-        param->d_func()->group = this;
+        if(differentId)
+        {
+            // If param is already in a group, remove it from it.
+            if(!param->d_func()->group.isNull())
+                param->d_func()->group->removeParameter(param);
 
-        // If it is the first parameter of the group, set its value to 'true'.
-        // It's supposed to always have one and only one parameter to true.
-        if(d->parameters.isEmpty())
-            param->setValue(true);
+            // Affect the group of the param to 'this'.
+            param->d_func()->group = this;
 
-        d->parameters << param;
-        connect(param, &PBoolParameter::valueChanged,
-                this, &PBoolGroup::_toggleParameters);
+            // If it is the first parameter of the group, set its value to 'true'.
+            // It's supposed to always have one and only one parameter to true.
+            if(d->parameters.isEmpty())
+                param->setValue(true);
 
-        param->trigger();
+            d->parameters << param;
+            connect(param, &PBoolParameter::valueChanged,
+                    this, &PBoolGroup::_toggleParameters);
+
+            param->trigger();
+        }
     }
 }
 
