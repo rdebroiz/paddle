@@ -23,7 +23,7 @@ public:
 };
 
 PBoolPresenter::PBoolPresenter(PBoolParameter *parent)
-    : PAbstractParameterPresenter(parent)
+    : PAbstractParameterPresenter(*new PBoolPresenterPrivate(this, parent), parent)
 {
 
 }
@@ -37,7 +37,7 @@ PBoolParameter *PBoolPresenter::parameter() const
 {
     Q_D(const PBoolPresenter);
 
-    return static_cast<PBoolParameter *>(d->parameter);
+    return d->parameter;
 }
 
 QWidget *PBoolPresenter::buildWidget() const
@@ -50,10 +50,10 @@ QCheckBox *PBoolPresenter::buildCheckBox() const
     Q_D(const PBoolPresenter);
 
     QCheckBox *checkBox = new QCheckBox;
-    checkBox->setChecked(this->parameter()->value());
+    checkBox->setChecked(d->parameter->value());
     d->connectButton(checkBox);
 
-    checkBox->setToolTip(this->parameter()->description());
+    checkBox->setToolTip(d->parameter->description());
     d->connectWiget(checkBox);
 
     checkBox->setText(this->parameter()->caption());
