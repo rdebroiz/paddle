@@ -3,6 +3,8 @@
 #include <PBoolPresenter.h>
 #include <PBoolGroup.h>
 #include <PParameterPool.h>
+#include <PIntPresenter.h>
+
 
 #include <QGroupBox>
 #include <QVBoxLayout>
@@ -124,6 +126,18 @@ int main(int argc, char **argv)
     b->addButton(c1);
     b->addButton(c2);
     b->addButton(c3);
+
+    QGroupBox *intWidget = new QGroupBox("Integer parameter");
+    mainLayout->addWidget(intWidget);
+    QHBoxLayout *intLayout = new QHBoxLayout;
+    intWidget->setLayout(intLayout);
+
+    PIntParameter *intParam = new PIntParameter("Integer Parameter", &widget);
+    PIntPresenter *intPres = new PIntPresenter(intParam);
+
+    intLayout->addWidget(intPres->buildSpinBox());
+    intLayout->addWidget(intPres->buildProgressBar());
+    intLayout->addWidget(intPres->buildSlider());
 
     widget.show();
 

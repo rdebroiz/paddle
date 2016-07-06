@@ -7,11 +7,13 @@ message(STATUS "configuring ${PROJECT_NAME}...")
 set(CPP_FILES
   parameter/PAbstractParameterPresenter.cpp
   parameter/PBoolPresenter.cpp
+  parameter/PIntPresenter.cpp
   )
 
 set(HEADER_FILES
   parameter/PAbstractParameterPresenter.h
   parameter/PBoolPresenter.h
+  parameter/PIntPresenter.h
   )
 
 set(HEADER_FILES_PRIVATE
