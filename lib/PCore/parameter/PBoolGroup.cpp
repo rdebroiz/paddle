@@ -79,7 +79,7 @@ void PBoolGroup::addParameter(PBoolParameter *param)
             if(p->id() == param->id())
             {
                 differentId = false;
-                qWarning() << Q_FUNC_INFO << "Attempt to put to PBoolParameter with the same id inside a PBoolGroup.";
+                qWarning() << Q_FUNC_INFO << "Attempt to add tow PBoolParameter with the same id inside a PBoolGroup.";
                 break;
             }
         }
