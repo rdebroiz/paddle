@@ -79,7 +79,6 @@ QProgressBar *PIntPresenter::buildProgressBar() const
     connect(d->parameter, &PIntParameter::valueChanged,
             progressBar, &QProgressBar::setValue);
 
-    progressBar->setToolTip(d->parameter->description());
     d->connectWidget(progressBar);
 
     progressBar->setRange(d->parameter->min(), d->parameter->max());
@@ -104,7 +103,6 @@ QSlider *PIntPresenter::buildSlider() const
     connect(d->parameter, &PIntParameter::valueChanged,
             slider, &QSlider::setValue);
 
-    slider->setToolTip(d->parameter->description());
     d->connectWidget(slider);
 
     slider->setRange(d->parameter->min(), d->parameter->max());
