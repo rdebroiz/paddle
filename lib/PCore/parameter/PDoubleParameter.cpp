@@ -38,17 +38,17 @@ void PDoubleParameter::setValue(double value)
 {
     Q_D(PDoubleParameter);
 
-        if(value < d->min)
-            value = d->min;
-        else if(value > d->max)
-            value = d->max;
+    if(value < d->min)
+        value = d->min;
+    else if(value > d->max)
+        value = d->max;
 
-        // Comparison with epsilon value ?
-        if(value != d->value)
-        {
-            d->value = value;
-            emit valueChanged(d->value);
-        }
+    // Comparison with epsilon value ?
+    if(value != d->value)
+    {
+        d->value = value;
+        emit valueChanged(d->value);
+    }
 }
 
 

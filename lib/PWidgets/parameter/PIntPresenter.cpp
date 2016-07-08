@@ -19,7 +19,7 @@ public:
 };
 
 PIntPresenter::PIntPresenter(PIntParameter *parent)
-    : PAbstractParameterPresenter (*new PIntPresenterPrivate(this, parent), parent)
+    : PAbstractParameterPresenter(*new PIntPresenterPrivate(this, parent), parent)
 {
 
 }
