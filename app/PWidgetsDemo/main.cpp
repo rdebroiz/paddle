@@ -4,6 +4,7 @@
 #include <PBoolGroup.h>
 #include <PParameterPool.h>
 #include <PIntPresenter.h>
+#include <PDoublePresenter.h>
 
 
 #include <QGroupBox>
@@ -138,6 +139,22 @@ int main(int argc, char **argv)
     intLayout->addWidget(intPres->buildSpinBox());
     intLayout->addWidget(intPres->buildProgressBar());
     intLayout->addWidget(intPres->buildSlider());
+
+
+    QGroupBox *doubleWidget = new QGroupBox("Double parameter");
+    mainLayout->addWidget(doubleWidget);
+    QHBoxLayout *doubleLayout = new QHBoxLayout;
+    doubleWidget->setLayout(doubleLayout);
+
+    PDoubleParameter *doubleParam = new PDoubleParameter("Double Parameter", &widget);
+    PDoublePresenter *doublePres = new PDoublePresenter(doubleParam);
+
+    doubleLayout->addWidget(doublePres->buildSpinBox());
+    doubleLayout->addWidget(doublePres->buildProgressBar());
+    doubleLayout->addWidget(doublePres->buildSlider());
+    doubleLayout->addWidget(doublePres->buildSlider());
+
+    doubleParam->setRange(-10, 10);
 
     widget.show();
 

@@ -8,12 +8,14 @@ set(CPP_FILES
   parameter/PAbstractParameterPresenter.cpp
   parameter/PBoolPresenter.cpp
   parameter/PIntPresenter.cpp
+  parameter/PDoublePresenter.cpp
   )
 
 set(HEADER_FILES
   parameter/PAbstractParameterPresenter.h
   parameter/PBoolPresenter.h
   parameter/PIntPresenter.h
+  parameter/PDoublePresenter.h
   )
 
 set(HEADER_FILES_PRIVATE
