@@ -4,6 +4,10 @@ project(PCore)
 
 message(STATUS "configuring ${PROJECT_NAME}...")
 
+find_package(Qt5 REQUIRED COMPONENTS
+  Core
+  )
+
 set(CPP_FILES
   parameter/PAbstractParameter.cpp
   parameter/PBoolParameter.cpp
@@ -88,5 +92,8 @@ target_link_libraries(${PROJECT_NAME}
 
 
 if(PADDLE_BUILD_TESTS)
+    find_package(Qt5 REQUIRED COMPONENTS
+      Test
+      )
     add_subdirectory(tests)
 endif()

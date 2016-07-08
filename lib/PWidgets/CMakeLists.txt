@@ -4,6 +4,11 @@ project(PWidgets)
 
 message(STATUS "configuring ${PROJECT_NAME}...")
 
+find_package(Qt5 REQUIRED COMPONENTS
+  Gui
+  Widgets
+  )
+
 set(CPP_FILES
   parameter/PAbstractParameterPresenter.cpp
   parameter/PBoolPresenter.cpp
