@@ -6,7 +6,7 @@
 class PDoubleSpinBox : public QDoubleSpinBox
 {
 public:
-    // overloaded textFromValue, so we can what value we want in the combo box.
+    // Overloaded textFromValue, so we can what value we want in the combo box.
     virtual QString textFromValue(double value) const
     {
         return QString::number(value, 'g', 7);
@@ -78,7 +78,7 @@ QDoubleSpinBox *PDoublePresenter::buildSpinBox() const
     QDoubleSpinBox *spinBox = new QDoubleSpinBox;
 
     spinBox->setValue(d->parameter->value());
-    // static cast needed on the functor beacause it's overloaded
+    // static cast needed on the functor because it's overloaded
     // Q_SIGNALS: void valueChanged(int); void valueChanged(const QString &);
     connect(spinBox, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),
             d->parameter, &PDoubleParameter::setValue);
@@ -154,6 +154,8 @@ void PDoublePresenter::setSingleStep(double step)
     {
         d->singleStep = step;
         emit singleStepChanged(d->singleStep);
+        // Recompute ranges and ival for sliders and progress bars:
+        this->_dispatchIRange(d->parameter->min(), d->parameter->max());
     }
 }
 
@@ -186,8 +188,9 @@ void PDoublePresenter::_setValueFromInt(int ival)
 {
     Q_D(PDoublePresenter);
 
-    // we need to check that ival actually changed.
-    // this slots could have been called because of a slider update due to another slider change.
+    // We need to check that ival actually changed.
+    // This slots could have been called because of a slider update due to another slider's value change.
+    // And result in an infinite signals/slots loop if there is no check.
     if(ival != d->ival)
     {
         d->ival = ival;
@@ -200,6 +203,10 @@ void PDoublePresenter::_dispatchIval(double value)
 {
     Q_D(PDoublePresenter);
 
+    // This slots is supposed to be called in only tow cases:
+    // 1. The value of the parameter has changed.
+    // 2. The range of the parameter has changed.
+    // In both cases 'ival' will change, so no need to check for it here.
     d->ival = d->valueToInt(value);
     emit iValChanged(d->ival);
 }
@@ -209,8 +216,8 @@ void PDoublePresenter::_dispatchIRange(double min, double max)
     Q_UNUSED(min);
     Q_D(PDoublePresenter);
 
-
     emit iRangeChanged(d->valueToInt(max));
+    // Recompute eval for sliders and progress bars:
     this->_dispatchIval(d->parameter->value());
 }
 
