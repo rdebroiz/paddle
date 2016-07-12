@@ -4,4 +4,4 @@ project(PLib)
 
 add_subdirectory(PCore)
 add_subdirectory(PWidgets)
-#add_subdirectory(PVtkView)
+add_subdirectory(PVtkView)
