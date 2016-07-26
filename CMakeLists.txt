@@ -8,6 +8,9 @@ set(CMAKE_AUTORCC ON)
 #   (nedded for generated files)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
+find_package(VTK REQUIRED)
+include(${VTK_USE_FILE})
+
 #find_package(ITK REQUIRED)
 #include(${ITK_USE_FILE})
 

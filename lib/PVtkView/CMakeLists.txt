@@ -15,12 +15,14 @@ set(CPP_FILES
   PVtkGraphicsView.cpp
   PVtkGraphicsItem.cpp
   PVtkInteractorAdapter.cpp
+  PVtkView.cpp
   )
 
 set(HEADER_FILES
   PVtkGraphicsView.h
   PVtkGraphicsItem.h
   PVtkInteractorAdapter.h
+  PVtkView.h
   )
 
 set(HEADER_FILES_PRIVATE

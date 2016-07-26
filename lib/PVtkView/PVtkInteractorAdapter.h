@@ -4,6 +4,8 @@
 
 class PVtkInteractorAdapter: public QVTKInteractorAdapter
 {
+    Q_OBJECT
+
 public:
     PVtkInteractorAdapter(QObject *parent = NULL);
 

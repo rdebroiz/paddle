@@ -5,6 +5,8 @@
 #include <vtkObject.h>
 #include <vtkRenderWindow.h>
 
+class PVtkGraphicsItem;
+
 class PVtkGraphicsViewPrivate;
 class PVtkGraphicsView: public QGraphicsView
 {
@@ -12,6 +14,8 @@ class PVtkGraphicsView: public QGraphicsView
 public:
     PVtkGraphicsView(QWidget *parent = NULL);
     virtual ~PVtkGraphicsView();
+
+    PVtkGraphicsItem* item() const;
 
 protected:
     virtual void resizeEvent(QResizeEvent *event);
