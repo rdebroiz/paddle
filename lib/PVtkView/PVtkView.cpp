@@ -6,8 +6,11 @@
 #include <vtkRenderer.h>
 #include <vtkRendererCollection.h>
 
-#include <vtkImageMapper.h>
+#include <vtkImageMapper3D.h>
 #include <vtkImageActor.h>
+#include <vtkDataSetMapper.h>
+
+#include <vtkGenericRenderWindowInteractor.h>
 
 #include "PVtkGraphicsView.h"
 #include "PVtkGraphicsItem.h"
@@ -59,10 +62,29 @@ void PVtkView::addData(vtkImageData *data)
 {
     Q_D(PVtkView);
 
-    vtkImageMapper *mapper = vtkImageMapper::New();
+    //    vtkImageActor *actor = vtkImageActor::New();
+    //    actor->GetMapper()->SetInputData(data);
+
+    //    d->axRen->AddActor(actor);
+
+    vtkSmartPointer<vtkDataSetMapper> mapper = vtkSmartPointer<vtkDataSetMapper>::New();
     mapper->SetInputData(data);
 
-    vtkImageActor *actor = vtkImageActor::New();
+    vtkSmartPointer<vtkActor> actor = vtkSmartPointer<vtkActor>::New();
+    actor->SetMapper(mapper);
 
+
+    // Add both renderers to the window
+    d->renwin->AddRenderer(d->axRen);
+
+    // Add a sphere to the left and a cube to the right
     d->axRen->AddActor(actor);
+
+    d->axRen->ResetCamera();
+
+    vtkSmartPointer<vtkGenericRenderWindowInteractor> renderWindowInteractor = vtkSmartPointer<vtkGenericRenderWindowInteractor>::New();
+    renderWindowInteractor->SetRenderWindow(d->renwin);
+    d->renwin->Render();
+    renderWindowInteractor->Start();
+
 }
